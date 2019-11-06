@@ -1,43 +1,41 @@
 import React from 'react';
-import Axios from 'axios';
+
+import Clock from './Clock'
+import StationBoard from './StationBoard'
+
+// Import App Version
+import {version} from '../package.json'
 
 class Board extends React.Component {
     constructor() {
         super();
 
+        let CRS = decodeURI(window.location.pathname).slice(1).toUpperCase()
+        if(CRS !== ""){
+            CRS = decodeURI(window.location.pathname).slice(1).toUpperCase().split(",")
+        }
+
         this.state = {
-            access_key: process.env.REACT_APP_NRE_ACCESS_KEY,
-            stations: process.env.REACT_APP_STATIONS.split(','),
-            departures: []
+            stations: CRS.length > 0 ? CRS : process.env.REACT_APP_STATIONS.split(','),
         }
     }
 
-    componentWillMount() {
-        Axios.get(`https://${process.env.REACT_APP_HUXLEY_PROXY_ADDRESS}/departures/CDF?expand=true&accessToken=${this.state.access_key}`)
-        .then(data => {
-            this.setState({
-                departures: data.data.trainServices
-            })
-        })
-    }
-
     render() {
+        console.log(this.state)
         return (
             <div>
-                <h1>Selected Stations</h1>
-                <ul>
+                <div className="board">
+                    <div className="clock">
+                        <Clock></Clock>
+                    </div>
+                    <ul>
                     {this.state.stations.map(station => {
-                        return <li>{station}</li>
+                        return <li key={station}><StationBoard crs={station}></StationBoard></li>
                     })}
-                </ul>
-                <h1>Cardiff Central Departures</h1>
-                <ul>
-                    {this.state.departures.map((value, index) => {
-                        return <li>{value.operator} service to {value.destination[0].locationName}</li>
-                    })}
-                </ul>
+                    </ul>
+                </div>
+                <div className="footer">Darwin Departures Board v{version}</div>
             </div>
-
         )
     }
 }

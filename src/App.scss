@@ -1,0 +1,141 @@
+$primary_grey: #1a1a1a;
+$primary_black: black;
+$primary_yellow: #f6a325;
+$primary_white: white;
+
+@font-face {
+    font-family:'BritishRailLightNormal';
+    src: url('/fonts/BritishRailLightNormal.eot');
+	src: url('/fonts/BritishRailLightNormal.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/BritishRailLightNormal.woff2') format('woff2'),
+		url('/fonts/BritishRailLightNormal.woff') format('woff'),
+		url('/fonts/BritishRailLightNormal.svg#BritishRailLightNormal') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-00FC;
+}
+
+@font-face {
+    font-family:'LED Counter 7';
+    src: url('/fonts/LED Counter 7.eot');
+	src: url('/fonts/LED Counter 7.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/LED Counter 7.woff2') format('woff2'),
+		url('/fonts/LED Counter 7.woff') format('woff'),
+		url('/fonts/LED Counter 7.svg#LED Counter 7') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-00FE;
+}
+
+html {
+    background-color: $primary_grey;
+    color: $primary_white;
+    font-family: BritishRailLightNormal;
+    padding: 20px;
+}
+
+@keyframes flash {
+    50% {
+        opacity: 0;
+    }
+}
+
+.footer {
+    font-size: 15px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.board {
+    height: 100%;
+    width: 100%;
+
+    .clock {
+        font-family: 'LED Counter 7';
+        position: fixed;
+        top: 0;
+        background-color: $primary_black;
+        padding: 0 20px;
+        font-size: 60px;
+        color: $primary_yellow;
+        margin: 0 0 20px 0;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 80px 0 0 0;
+        white-space: nowrap;
+
+        li {
+            display: inline-block;
+            width: 600px;
+            margin: 0 20px 0 0;
+        }
+    }
+
+    .stationBoard {
+        background-color: $primary_black;
+        padding: 20px;
+        margin: 0;
+        white-space: normal;
+
+        .center {
+            text-align: center;
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+
+            thead {
+
+                tr {
+                    td {
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    background-color: $primary_grey;
+                    font-family: 'LED Counter 7';
+                    color: $primary_yellow;
+
+                    a:link, a:hover, a:visited {
+                        color: $primary_yellow;
+                    }
+                    
+                    td {
+                        border: 0;
+                        margin: 0;
+                        padding: 20px 0;
+                        font-size: 20px;
+
+                        span.flash {
+                            animation: flash 2s step-start infinite;
+                        }
+
+                        &.left {
+                            padding-left: 20px;
+                        }
+
+                        &.right {
+                            padding-right: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
