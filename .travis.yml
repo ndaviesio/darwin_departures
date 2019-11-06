@@ -1,4 +1,6 @@
 language: node_js
+node_js:
+  - "node"
 env:
   global:
     - REACT_APP_NRE_TOKEN: 
@@ -6,6 +8,7 @@ env:
     - REACT_APP_HUXLEY_PROXY_ADDRESS: huxley.apphb.com
     - REACT_APP_STATIONS: CDF,CDQ
 install:
+  - npm i -g npm@5.7.1
   - npm ci
 script:
   - npm run build
