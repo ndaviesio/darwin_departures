@@ -8,11 +8,14 @@ class StationBoard extends React.Component {
         this.state = {
             crs: this.props.crs,
         }
+
+        this.update = this.update.bind(this)
     }
 
     update() {
         Axios.get(`https://${process.env.REACT_APP_HUXLEY_PROXY_ADDRESS}/departures/${this.state.crs}?expand=true&accessToken=${process.env.REACT_APP_NRE_ACCESS_KEY}`)
         .then(response => {
+            console.log(`Getting update from https://${process.env.REACT_APP_HUXLEY_PROXY_ADDRESS}/departures/${this.state.crs}`)
             this.setState({
                 busServices: response.data.busServices != null && response.data.busServices,
                 trainServices: response.data.trainServices != null && response.data.trainServices,
@@ -24,8 +27,8 @@ class StationBoard extends React.Component {
 
     componentDidMount() {
         this.update()
-        // Trigger a data refresh every 30 seconds
-        setInterval(this.update(), 30000)
+        // Trigger a data refresh every 10 seconds
+        setInterval(this.update, 10000)
     }
 
     render() {
@@ -49,9 +52,9 @@ class StationBoard extends React.Component {
                                         <tr className="line">
                                             <td className="left">{service.std}</td>
                                             <td>{service.destination[0].locationName}</td>
-                                            <td className="center">{service.platform != null ? service.platform : <span className="flash">Please Wait</span>}</td>
+                                            <td className="center">{service.etd === "Cancelled" ? "" : service.platform != null ? service.platform : <span className="flash">Please Wait</span>}</td>
                                             <td className="right">{
-                                                service.etd == "Cancelled" || service.etd == "Delayed" ? 
+                                                service.etd === "Cancelled" || service.etd === "Delayed" ? 
                                                     <span className="flash">{service.etd}</span> : service.etd
 
                                                 }
@@ -75,7 +78,7 @@ class StationBoard extends React.Component {
                                 })
                         }
                         <tr className="pagination">
-                            <td colspan="2" className="left">Page 1 of 1</td>
+                            <td colSpan="2" className="left">Page 1 of 1</td>
                         </tr>
                     </tbody>
                 </table>
