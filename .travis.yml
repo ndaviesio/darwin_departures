@@ -8,7 +8,6 @@ env:
     - REACT_APP_HUXLEY_PROXY_ADDRESS: huxley.apphb.com
     - REACT_APP_STATIONS: CDF,CDQ
 install:
-  - npm i -g npm@5.7.1
   - npm ci
 script:
   - npm run build
@@ -21,5 +20,6 @@ deploy:
   secret_access_key:
     secure: Yu+Sb7+umXuW1JfKM9XmGqMoO9ricUb+hVIz/oiO7bqi3ZMo64QgjbeeJ1KkSbOS6l4XdcJZdQQhtH8zMvsbERDobR/iw5+L0TBggYUlEEY5t+Jz7Wx4RVQKgqAutbmrujP682uhgdKfexBWmQfXW3Co75UUspa/HHH5v84WjPrh+ENMqaqAfta0d7lic9/msA8Xm/tGkumZCvNHk8lqUWnFX3NnVPFeUR/VZsn/j7bVCgBPUDIlfVo3ZAIyfpliwVb9Nu2/JMDcTEB+JSyYyxuRNMSGUsh3aKU2fndIkUv6GwlnCZJ+cEWnikwB2E3+OGJCQ1HWjOBOrmlUI0ncuuPh5ccyOi6s5rNMnqMgQQjyAR/wUJngQzyBDBynknpL3tQHSyiUCSC5PPASJRj9GlARWkMddvi1Rhy8HBPLCp3/izAo3QywLl6U95cMsz8Oe8Rd1SleEfswTIQoQMF1/U6XGizEXGnaBB3lklfL7LMrpFV+/NI6aVmMGQU57ai9AFGhDFcZxUqeoLTEx370u0SvZ7fd9N6M34d8d4lAPW+w6/yiZ/06Wxo6R+GiDWua21nYUnqOZBeIWwna1HGOsr2nGwdtIWTjtzEdNB6vmyf9yRPO4U6mJFsPg86Vh86q3ct7vYSEem5lOaG1pxoOQAIBK6Q/EV3pQSndyikSNLk=
   bucket: static-source-trains-ndavies-io
+  local_dir: build
   on:
     branch: master
