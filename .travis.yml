@@ -7,6 +7,8 @@ env:
         secure: OCHBg/QlvSTN38sPhmSLpyJ7yRkkArjpPluTbttxZgiiJ1jH05f/9LqAA1MWhCbzjmJZ/Yk8LV7znH1zbv8t6hRSJyvj0V9stxtIzCgrbqKN25wRUCOCl9e9+fYLIA3zDf2G6ue3jdmHyGzVy0OVDB0OrfD4TRbA7h0azBgoosKVxFfRZuzRJG90tfcMe09xbA2/zfL5KdZkS6dbkvyVzYoIPkFxEVoLsGQNKUFchIFRlpgWyMTedUCWDM01Nx0x9N7aJFKnSAtoJ6UflAj0ZXwIbs0I5atzfQLpGk9lEz4DTnd/buG4by1GxPWCXS7YMAZ7lavxFLGlF6xLkIZArQ2zv3bwpy0zpSNauYHqCrRSEbYJS4k1ITiifEm5oAPlR3831vDRB7iPG8uSGMmfY+bIv0DoSZwj/6vUBXgssjXODr3QfiPDm1wfERSwZ7CcM1QjBZ1bprpSJqlCcE5DQezcTBcfC3t6OYHV1TKcQgxtV8zKt4N2dz2Fy0muAdC0Y/oK0m9RuSATvygs6+EUmPODZAKlgBuzTDachy6ZzPXEg30XM3wDy+o5V109S+TF9tQGj2xdoHTVafb0CdObrOeiRoLZOs8G21+5OGFY9NA97HcGwkhODkdL9qS9zraOf1g8pQ6kIwXZa8AIB1/+9H/dyAvg8GVmN+CBEWKVo0U=
     - REACT_APP_HUXLEY_PROXY_ADDRESS: huxley.apphb.com
     - REACT_APP_STATIONS: CDF,CDQ
+    - GITHUB_TOKEN: 
+        secure: "S6GZTZpJz0yZRgMSEjbIFslrASKb82xvqP5o8IHHEFifafoUWAvkOgCEpV7ajlKbCgGTJb1Du1dIieLADbdAdudnPl4CR4EQDyiCqf3efXuK4tJ6o0eQU0lKbXzcVi4bgTAaWice//0pYdzdL4VNCKq4+dVZgMHz6eDX3+R6VI8NUwpNR9D2Cu+lflxrMjczHO5+XyN8aJW43xR1Yo224PB6Qk2H52wckh9nvelBBBrGoL54zaVPKfz+d6SiCJzNceZoY67v084+IemqFI4MzRnfIavTmLOpwReq+aV6EWneY9aeQg095afuPGZOz7jDJnHp2VCHHYt3ExqVlem23CtMjMSNHK8wLnOadNhhldr0dj1Ez4SY9cJch/IxzqztQ+ceig1u9LMl4J88+P+Tey26R+ZdeFmlZzIf6di2KFPmrnqf3MnALC6aLhFq1UPRBHZX71wyOwQOSTptLDOayHZgpKWX9TeDLiQ9DTlxNSEcJQQr74AeRDKMVCKFIzfT1hI9snu/ecg2W7GISMjWt7W0ILQ9AdF6AFllFccHysLEDfF2dj6EYvpRzaYUUvh5UcmVm98vvDSZu+CMsxnURCldQP1iX/AUzPoL09AidTUBF0xCaXRjrS5Aap4aXsXJzhPCsAXHzs2iWmNAFw76jRn1HnitwYL0q+mKg0q4uqk="
 install:
   - npm ci
 script:
@@ -14,7 +16,7 @@ script:
 after_success:
   - test $TRAVIS_BRANCH = "master" && npx semantic-release
 before_deploy:
-  - ls -al
+  - npm run build
 deploy:
   provider: s3
   region: eu-west-1
