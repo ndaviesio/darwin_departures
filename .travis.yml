@@ -13,6 +13,8 @@ script:
   - npm run build
 after_success:
   - test $TRAVIS_BRANCH = "master" && npx semantic-release
+before_deploy:
+  - ls -al
 deploy:
   provider: s3
   region: eu-west-1
