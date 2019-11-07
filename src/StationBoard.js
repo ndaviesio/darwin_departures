@@ -10,6 +10,9 @@ class StationBoard extends React.Component {
             show: "trains"
         }
 
+        this.lineCount = 10
+        this.noticeLineCount = 0
+
         this.update = this.update.bind(this)
         this.switch = this.switch.bind(this)
     }
@@ -35,11 +38,28 @@ class StationBoard extends React.Component {
                     break;
                 case "notices":
                     this.setState({ show: "trains" })
+                    this.noticeLineCount = 0
                     break;
                 default:
                     break;
             }
         }
+    }
+
+    padLines(count) {
+        var lines = []
+
+        for(var i=0;i<count;i++){
+            lines.push(
+                <tr className="line">
+                    <td colSpan="4" className="center"></td>
+                </tr>
+            )
+        }
+
+        console.log(lines)
+
+        return lines
     }
 
     componentDidMount() {
@@ -87,6 +107,12 @@ class StationBoard extends React.Component {
                                     <td colSpan="4" className="center">There are currently no trains from {this.state.locationName}</td>
                                 </tr>
                                 }
+                                {
+                                    this.state.trainServices ?
+                                        this.padLines(this.lineCount - this.state.trainServices.length)
+                                    :
+                                        this.padLines(9)
+                                }
                             </tbody>
                         : 
                             this.state.nrccMessages &&
@@ -102,6 +128,8 @@ class StationBoard extends React.Component {
 
                                         split.push(" ")
 
+                                        this.noticeLineCount += split.length
+
                                         return (
                                             split.map(line => {
                                                 return (
@@ -112,6 +140,9 @@ class StationBoard extends React.Component {
                                             })
                                         )
                                     })}
+                                    {   
+                                        this.padLines(this.lineCount - this.noticeLineCount)
+                                    }
                                 </tbody>
                     }
                 </table>
