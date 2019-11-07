@@ -92,7 +92,7 @@ class StationBoard extends React.Component {
                                             <tr className="line">
                                                 <td className="left">{service.std}</td>
                                                 <td>{service.destination[0].locationName}</td>
-                                                <td className="center">{service.etd === "Cancelled" ? "" : service.platform != null && service.platform}</td>
+                                                <td className="center">{service.etd === "Cancelled" ? "" : service.platform }</td>
                                                 <td className="right">{
                                                     service.etd === "Cancelled" || service.etd === "Delayed" ? 
                                                         <span className="flash">{service.etd}</span> : service.etd
@@ -141,7 +141,7 @@ class StationBoard extends React.Component {
                                         )
                                     })}
                                     {   
-                                        this.padLines(this.lineCount - this.noticeLineCount)
+                                        this.padLines(this.lineCount - this.noticeLineCount - 1)
                                     }
                                 </tbody>
                     }
