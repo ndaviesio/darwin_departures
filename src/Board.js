@@ -10,8 +10,10 @@ class Board extends React.Component {
     constructor() {
         super();
 
-        let CRS = decodeURI(window.location.pathname).slice(1).toUpperCase()
-        if(CRS !== ""){
+        if(window.location.search.slice(1).split('=').find(item => { return item === "crs"})){
+            let index = window.location.search.slice(1).split('=').findIndex(item => { return item === "crs"})
+            var CRS = window.location.search.slice(1).split('=')[index + 1].split(",")
+        } else {
             CRS = decodeURI(window.location.pathname).slice(1).toUpperCase().split(",")
         }
 
