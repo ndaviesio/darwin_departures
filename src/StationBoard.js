@@ -18,7 +18,7 @@ class StationBoard extends React.Component {
     }
 
     update() {
-        Axios.get(`https://${process.env.REACT_APP_HUXLEY_PROXY_ADDRESS}/departures/${this.state.crs}/15?expand=true&accessToken=${process.env.REACT_APP_NRE_ACCESS_KEY}`)
+        Axios.get(`https://${process.env.REACT_APP_HUXLEY_PROXY_ADDRESS}/departures/${this.state.crs}/10?expand=true&accessToken=${process.env.REACT_APP_NRE_ACCESS_KEY}`)
         .then(response => {
             console.log(`Getting update from https://${process.env.REACT_APP_HUXLEY_PROXY_ADDRESS}/departures/${this.state.crs}`)
             this.setState({
