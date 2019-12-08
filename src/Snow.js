@@ -1,4 +1,5 @@
 import React from 'react';
+import './Snow.scss'
 
 class Snow extends React.Component {
     constructor(props) {
