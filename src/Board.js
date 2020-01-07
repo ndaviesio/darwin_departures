@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Clock from './Clock'
-import Snow from './Snow'
 import StationBoard from './StationBoard'
 
 // Import App Version
