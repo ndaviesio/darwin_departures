@@ -52,7 +52,6 @@ class Board extends React.Component {
     render() {
         return (
             <div>
-                <Snow></Snow>
                 <div className="board">
                     <div className="clock">
                         <Clock></Clock>
