@@ -3,13 +3,19 @@ import React from 'react';
 import Clock from './Clock'
 import StationBoard from './StationBoard'
 
+import { Slide, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// Import StationData
+import stationReferenceData from './stationReferenceData'
+
 // Import App Version
 import {version} from '../package.json'
 
 class Board extends React.Component {
     constructor() {
         super();
-        
+
         /*
             Extract Station Identifiers to display
             Three options are available to users:
@@ -28,7 +34,7 @@ class Board extends React.Component {
             Order of Precendance
             1. Query Based
             2. Path Based
-            3. .env file configuration 
+            3. .env file configuration
         */
         var CRS = []
 
@@ -44,8 +50,18 @@ class Board extends React.Component {
         }
 
         this.state = {
-            stations: CRS.length > 0 ? CRS : process.env.REACT_APP_STATIONS.split(','),
+            stations: CRS.length > 0 ? this.validateCRSList(CRS) : process.env.REACT_APP_STATIONS.split(','),
         }
+    }
+
+    validateCRSList = (crsList) => {
+        let validList = []
+        crsList.forEach(crs => {
+            stationReferenceData.find(station => {
+                return station.crs === crs
+            }) ? validList.push(crs) : toast.dark(`${crs.toUpperCase()} is not a valid station code!`, {position: "bottom-right"})
+        })
+        return validList
     }
 
     render() {
@@ -62,6 +78,9 @@ class Board extends React.Component {
                     </ul>
                 </div>
                 <div className="footer">Darwin Departures Board v{version}</div>
+                <ToastContainer
+                    transition={Slide}
+                />
             </div>
         )
     }

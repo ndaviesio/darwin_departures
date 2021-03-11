@@ -36,6 +36,14 @@ html {
     padding: 20px;
 }
 
+.Toastify__progress-bar--dark {
+    background: $primary_yellow !important;
+}
+
+.Toastify__toast {
+    border-radius: 0 !important;
+}
+
 @keyframes flash {
     50% {
         opacity: 0;
