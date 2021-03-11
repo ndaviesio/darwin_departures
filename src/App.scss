@@ -47,6 +47,7 @@ html {
     position: fixed;
     top: 20px;
     right: 20px;
+    z-index: -50;
 }
 
 .board {
@@ -116,7 +117,7 @@ html {
                     a:link, a:hover, a:visited {
                         color: $primary_yellow;
                     }
-                    
+
                     td {
                         border: 0;
                         margin: 0;
